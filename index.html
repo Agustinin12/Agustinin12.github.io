@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>¡WOW! - Cubo 3D Impresionante</title>
+  <style>
+    /* Reinicio de márgenes y estilos por defecto */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Estilos generales del body */
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      perspective: 1000px; /* Permite la vista 3D */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff0080, #ff8c00, #40e0d0);
+      background-size: 400% 400%;
+      animation: bgAnimation 20s infinite alternate ease-in-out;
+    }
+
+    /* Animación del fondo: cambia la posición del gradiente para un efecto hipnótico */
+    @keyframes bgAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Contenedor que mantiene el cubo centrado y en 3D */
+    .cube-container {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      transform-style: preserve-3d; /* Necesario para el 3D */
+      animation: rotateCube 10s infinite linear;
+    }
+
+    /* Animación que hace rotar el cubo */
+    @keyframes rotateCube {
+      0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      }
+      25% {
+        transform: rotateX(180deg) rotateY(0deg) rotateZ(0deg);
+      }
+      50% {
+        transform: rotateX(180deg) rotateY(180deg) rotateZ(0deg);
+      }
+      75% {
+        transform: rotateX(360deg) rotateY(180deg) rotateZ(180deg);
+      }
+      100% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+      }
+    }
+
+    /* Cada cara del cubo */
+    .face {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      color: #fff;
+      text-align: center;
+      /* Para que la cara sea opaca */
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Ajustes de cada cara (posición y rotación en 3D) */
+    .face--front  { transform: translateZ(150px); }
+    .face--back   { transform: rotateY(180deg) translateZ(150px); }
+    .face--right  { transform: rotateY(90deg)  translateZ(150px); }
+    .face--left   { transform: rotateY(-90deg) translateZ(150px); }
+    .face--top    { transform: rotateX(90deg)  translateZ(150px); }
+    .face--bottom { transform: rotateX(-90deg) translateZ(150px); }
+
+    /* Imagen centrada en la cara frontal */
+    .face--front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* Estilos para el texto en otras caras */
+    .face-content {
+      padding: 20px;
+      line-height: 1.4;
+    }
+
+    .face-content h2 {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .face-content p {
+      margin-bottom: 15px;
+    }
+
+    /* Link con subrayado animado */
+    .face-content a {
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-bottom 0.3s;
+      font-weight: bold;
+    }
+    .face-content a:hover {
+      border-bottom: 2px solid #fff;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="cube-container">
+    <!-- Cara frontal con la foto -->
+    <div class="face face--front">
+      <!-- Ajusta 'foto.jpg' al nombre real de tu imagen -->
+      <img src="img/foto.jpg" alt="Foto de Agus Herero">
+    </div>
+
+    <!-- Cara trasera: texto o curiosidades -->
+    <div class="face face--back">
+      <div class="face-content">
+        <h2>Agus Herero</h2>
+        <p>El reverso del cubo te revela más sobre este crack. ¡Sigue descubriendo!</p>
+      </div>
+    </div>
+
+    <!-- Cara derecha: algún dato extra -->
+    <div class="face face--right">
+      <div class="face-content">
+        <h2>Curiosidades</h2>
+        <p>
+          Talento, energía y un estilo único. <br/>
+          ¿Listo para más sorpresas?
+        </p>
+      </div>
+    </div>
+
+    <!-- Cara izquierda: más texto o lo que quieras añadir -->
+    <div class="face face--left">
+      <div class="face-content">
+        <h2>Sobre él</h2>
+        <p>
+          Cada giro revela un nuevo lado, <br/>
+          una nueva historia por contar.
+        </p>
+      </div>
+    </div>
+
+    <!-- Cara superior: un saludo o frase épica -->
+    <div class="face face--top">
+      <div class="face-content">
+        <h2>¡WOW!</h2>
+        <p>
+          Cuando lo veas girar, <br/>
+          querrás gritarlo en voz alta.
+        </p>
+      </div>
+    </div>
+
+    <!-- Cara inferior: enlace a Instagram -->
+    <div class="face face--bottom">
+      <div class="face-content">
+        <h2>Conéctate</h2>
+        <p>
+          <a href="https://www.instagram.com/_herreroaguss_/" target="_blank">
+            Instagram Oficial
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
